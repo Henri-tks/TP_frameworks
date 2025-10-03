@@ -1,75 +1,114 @@
-# React + TypeScript + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-Currently, two official plugins are available:
+# TP Final – Gestionnaire de tâches React
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Prérequis
 
-## React Compiler
+- Node.js >= 18.x recommandé
+- npm >= 9.x
 
-The React Compiler is enabled on this template. See [this documentation](https://react.dev/learn/react-compiler) for more information.
+## Installation détaillée
 
-Note: This will impact Vite dev & build performances.
+1. **Cloner le dépôt**
+	```bash
+	git clone <url-du-repo>
+	cd tp_final
+	```
 
-## Expanding the ESLint configuration
+2. **Installer les dépendances**
+	```bash
+	npm install
+	```
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+3. **Lancer le serveur de développement**
+	```bash
+	npm run dev
+	```
+	- Accès à l’application sur [http://localhost:5173](http://localhost:5173) (ou port affiché dans le terminal)
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+4. **Compiler pour la production**
+	```bash
+	npm run build
+	```
+	- Le build final est généré dans le dossier `dist/`
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+5. **Prévisualiser le build**
+	```bash
+	npm run preview
+	```
+	- Permet de tester le build localement avant déploiement
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+6. **Vérifier la qualité du code (lint)**
+	```bash
+	npm run lint
+	```
+	- Analyse statique du code avec ESLint
+
+## Scripts npm disponibles
+
+| Script         | Description                                      |
+| -------------- | ------------------------------------------------ |
+| `npm run dev`  | Démarre le serveur de développement (Vite)       |
+| `npm run build`| Build de production optimisé                     |
+| `npm run preview` | Prévisualise le build localement              |
+| `npm run lint` | Analyse statique du code (ESLint)                |
+
+## Fonctionnalités principales
+
+- Ajout, suppression, édition, statut (à faire/fait) des tâches
+- Filtrage dynamique (toutes, à faire, faites)
+- Persistance locale (localStorage, aucune API serveur requise)
+- Interface moderne, responsive et accessible (labels, navigation clavier)
+- Performance fluide même avec 200+ tâches (optimisation React.memo, tri/filtre efficaces)
+- Structure modulaire (composants, context, hooks)
+
+## Structure du projet
+
+```
+tp_final/
+│
+├── components/      # Composants React (TaskForm, TaskList, TaskItem, TaskFilter...)
+├── context/         # Contexte global (TasksContext)
+├── utils/           # Fonctions utilitaires (localStorage)
+├── src/             # Point d’entrée, styles globaux
+├── types.ts         # Types TypeScript partagés
+├── package.json     # Dépendances et scripts npm
+├── vite.config.ts   # Configuration Vite
+└── ...
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Fonctionnement
 
+- **Ajout d’une tâche** : formulaire contrôlé, validation du titre, description et date optionnelles
+- **Statut** : case à cocher pour marquer comme « à faire » ou « fait »
+- **Filtrage** : boutons pour afficher toutes les tâches, seulement celles à faire ou faites
+- **Persistance** : toute modification est sauvegardée dans le localStorage automatiquement
+- **Accessibilité** : labels associés aux inputs, navigation clavier, couleurs contrastées
+
+## Conseils Git & bonnes pratiques
+
+- Utilise des commits atomiques et explicites (ex : `feat: ajout du filtrage par statut`)
+- Garde le repo propre : pas de fichiers inutiles, pas de secrets dans le code
+- Ajoute un `.gitignore` (déjà présent si tu utilises Vite)
+- Documente toute modification importante dans le README
+
+## FAQ
+
+**Q : Je n’arrive pas à lancer le projet ?**
+A : Vérifie ta version de Node.js (`node -v`). Supprime le dossier `node_modules` et relance `npm install` si besoin.
+
+**Q : Où sont stockées mes tâches ?**
+A : Dans le localStorage du navigateur. Pas de serveur, tout reste en local.
+
+**Q : Comment réinitialiser toutes les tâches ?**
+A : Ouvre la console du navigateur et exécute :
 ```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+localStorage.removeItem('tasks')
 ```
+
+**Q : Comment déployer sur un hébergeur statique ?**
+A : Après `npm run build`, déploie le dossier `dist/` sur Vercel, Netlify, GitHub Pages, etc.
+
+## Auteur
+
+Henri-tks
