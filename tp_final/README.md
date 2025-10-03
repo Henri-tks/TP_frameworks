@@ -85,30 +85,6 @@ tp_final/
 - **Persistance** : toute modification est sauvegardée dans le localStorage automatiquement
 - **Accessibilité** : labels associés aux inputs, navigation clavier, couleurs contrastées
 
-## Conseils Git & bonnes pratiques
-
-- Utilise des commits atomiques et explicites (ex : `feat: ajout du filtrage par statut`)
-- Garde le repo propre : pas de fichiers inutiles, pas de secrets dans le code
-- Ajoute un `.gitignore` (déjà présent si tu utilises Vite)
-- Documente toute modification importante dans le README
-
-## FAQ
-
-**Q : Je n’arrive pas à lancer le projet ?**
-A : Vérifie ta version de Node.js (`node -v`). Supprime le dossier `node_modules` et relance `npm install` si besoin.
-
-**Q : Où sont stockées mes tâches ?**
-A : Dans le localStorage du navigateur. Pas de serveur, tout reste en local.
-
-**Q : Comment réinitialiser toutes les tâches ?**
-A : Ouvre la console du navigateur et exécute :
-```js
-localStorage.removeItem('tasks')
-```
-
-**Q : Comment déployer sur un hébergeur statique ?**
-A : Après `npm run build`, déploie le dossier `dist/` sur Vercel, Netlify, GitHub Pages, etc.
-
 ## Auteur
 
 Henri-tks
