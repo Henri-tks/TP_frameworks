@@ -1,0 +1,128 @@
+
+/* Style futuriste, sombre, 3D et néon */
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Orbitron', 'Segoe UI', 'Roboto', 'Arial', sans-serif;
+  background: linear-gradient(135deg, #0f2027 0%, #2c5364 100%);
+  min-height: 100vh;
+  color: #e0e7ef;
+  /* Image de fond futuriste (remplacer l'URL si besoin) */
+  background-image: url('/src/assets/space-bg.jpg'), linear-gradient(135deg, #0f2027 0%, #2c5364 100%);
+  background-size: cover;
+  background-blend-mode: overlay;
+}
+
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.app-container {
+  background: rgba(20, 20, 30, 0.92);
+  border-radius: 22px;
+  box-shadow: 0 8px 32px 0 rgba(0,0,0,0.45), 0 0 24px #00fff7a0, 0 0 48px #1e90ff40;
+  padding: 2.5rem 2rem;
+  max-width: 480px;
+  width: 100%;
+  margin: 2rem auto;
+  text-align: center;
+  backdrop-filter: blur(6px);
+  border: 2px solid #00fff7;
+  transition: box-shadow 0.3s;
+}
+.app-container:hover {
+  box-shadow: 0 8px 48px 0 #00fff7, 0 0 64px #1e90ff80;
+}
+
+h1 {
+  color: #00fff7;
+  font-size: 2.5rem;
+  margin-bottom: 1.2rem;
+  text-shadow: 0 0 12px #00fff7, 0 0 32px #1e90ff;
+  letter-spacing: 2px;
+}
+
+p {
+  color: #b5eaff;
+  font-size: 1.1rem;
+  margin-bottom: 1.5rem;
+  text-shadow: 0 0 8px #1e90ff40;
+}
+
+button {
+  background: linear-gradient(90deg, #00fff7 0%, #1e90ff 100%);
+  color: #181c24;
+  border: none;
+  border-radius: 10px;
+  padding: 0.7rem 1.7rem;
+  font-size: 1.1rem;
+  font-family: inherit;
+  cursor: pointer;
+  margin: 0.5rem 0.3rem;
+  box-shadow: 0 0 16px #00fff7a0, 0 0 8px #1e90ff80;
+  transition: transform 0.15s, box-shadow 0.2s;
+  font-weight: bold;
+  text-shadow: 0 0 6px #fff8;
+}
+button:hover {
+  transform: scale(1.08) perspective(80px) rotateX(8deg);
+  box-shadow: 0 0 32px #00fff7, 0 0 32px #1e90ff;
+}
+
+input[type="text"] {
+  background: #232b3a;
+  border: 1.5px solid #00fff7;
+  border-radius: 8px;
+  color: #e0e7ef;
+  padding: 0.6rem 1rem;
+  margin: 0.5rem 0.3rem;
+  font-size: 1rem;
+  box-shadow: 0 0 8px #00fff7a0;
+  outline: none;
+  transition: border 0.2s, box-shadow 0.2s;
+}
+input[type="text"]:focus {
+  border: 2px solid #1e90ff;
+  box-shadow: 0 0 16px #1e90ff80;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+li {
+  background: rgba(30, 40, 60, 0.85);
+  margin: 0.4rem 0;
+  padding: 0.7rem 1rem;
+  border-radius: 8px;
+  box-shadow: 0 0 8px #00fff7a0;
+  color: #fff;
+  font-size: 1.05rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+h2 {
+  color: #1e90ff;
+  text-shadow: 0 0 10px #00fff7, 0 0 24px #1e90ff80;
+  margin-top: 2rem;
+}
+
+/* Ajout d'une image décorative 3D (remplacer l'URL si besoin) */
+.futuristic-img {
+  width: 120px;
+  margin: 1.5rem auto 0 auto;
+  display: block;
+  filter: drop-shadow(0 0 32px #00fff7) drop-shadow(0 0 16px #1e90ff);
+  transform: perspective(400px) rotateY(-18deg) scale(1.1);
+  transition: transform 0.3s;
+}
+.futuristic-img:hover {
+  transform: perspective(400px) rotateY(18deg) scale(1.18);
+}
